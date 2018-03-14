@@ -1,20 +1,18 @@
 const upload = {
-      uploadIMG(e,imgurl) {
+      uploadIMG:(e,imgurl)=> {
         let files = e.target.files || e.dataTransfer.files;
         if (!files.length) return;
         this.picavalue = files[0];
         console.log(imgurl)
         console.log(this.picavalue.size / 1024);
         if (this.picavalue.size / 1024 > 5000) {
-          Toast({
-            message: "图片过大不支持上传",
-          });
+          alert("图片过大不支持上传");
         } else {
           this.imgPreview(this.picavalue,imgurl);
         }
       },
       //获取图片
-      imgPreview(file, imgurls) {
+      imgPreview:(file, imgurls)=> {
         let self = this;
         //判断支不支持FileReader
         if (!file || !window.FileReader) return;
@@ -66,7 +64,7 @@ const upload = {
         }
       },
       // 压缩图片
-      compress(img) {
+      compress:(img)=> {
         let canvas = document.createElement("canvas");
         let ctx = canvas.getContext("2d");
         let initSize = img.src.length;
